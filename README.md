@@ -15,7 +15,8 @@ docker run -it smartive/php-fpm-symfony:7.1 /bin/bash
 
 ## Folders
 
-|| Folder || Description ||
-| /app | Application directory available as mount volume, containing your Symfony application files |
-| /var/log/php7 | PHP-FPM logs |
-| /etc/php7 | PHP configuration files |
+| Folder        | Description                                                                                |
+| ------------- | ------------------------------------------------------------------------------------------ |
+| /app          | Application directory available as mount volume, containing your Symfony application files |
+| /var/log/php7 | PHP-FPM logs                                                                               |
+| /etc/php7     | PHP configuration files                                                                    |
