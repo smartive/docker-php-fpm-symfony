@@ -1,7 +1,7 @@
 # Docker image for Symfony development
 
 This image is based on Alpine Linux and contains of the following software:
-- PHP 7.1 with FPM
+- PHP 7.2 with FPM
 - NodeJS 10
 - MySQL client
 - Bash
@@ -10,7 +10,7 @@ This image is based on Alpine Linux and contains of the following software:
 ## Usage
 
 ```
-docker run -it smartive/php-fpm-symfony:7.1 /bin/bash
+docker run -it smartive/php-fpm-symfony:7.2 /bin/bash
 ```
 
 ## Folders

@@ -2,7 +2,7 @@ FROM node:10-alpine
 
 LABEL maintainer="smartive AG <hello@smartive.ch>"
 
-ENV PHP_VERSION 7.1
+ENV PHP_VERSION 7.2
 
 RUN apk update && \
     apk add ca-certificates wget && \
