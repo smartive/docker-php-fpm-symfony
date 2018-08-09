@@ -24,6 +24,7 @@ RUN apk add --update \
     php7-imap \
     php7-json \
     php7-mbstring \
+    php7-mcrypt \
     php7-mysqlnd \
     php7-opcache \
     php7-openssl \
@@ -35,6 +36,7 @@ RUN apk add --update \
     php7-posix \
     php7-session \
     php7-soap \
+    php7-tokenizer \
     php7-xml \
     php7-zip \
     php7-zlib \
