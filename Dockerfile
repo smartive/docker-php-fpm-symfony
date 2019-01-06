@@ -42,11 +42,8 @@ RUN apk add --update \
     php-phar@php \
     php-posix@php \
     php-session@php \
-    php-simplexml@php \
     php-soap@php \
-    php-tokenizer@php \
     php-xml@php \
-    php-xmlwriter@php \
     php-zip@php \
     php-zlib@php \
     php-xdebug@php
