@@ -44,6 +44,7 @@ RUN apk add --update \
     php-session@php \
     php-soap@php \
     php-xml@php \
+    php-xmlreader@php \
     php-zip@php \
     php-zlib@php \
     php-xdebug@php
