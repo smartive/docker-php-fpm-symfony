@@ -2,14 +2,9 @@ FROM node:12-alpine
 
 LABEL maintainer="smartive AG <hello@smartive.ch>"
 
-ENV PHP_VERSION 7.4
-
 RUN apk update && \
     apk add ca-certificates && \
     update-ca-certificates
-
-ADD https://php.codecasts.rocks/php-alpine.rsa.pub /etc/apk/keys/php-alpine.rsa.pub
-RUN echo "@php https://php.codecasts.rocks/v$(cat /etc/alpine-release | cut -d'.' -f1,2)/php-${PHP_VERSION}" >> /etc/apk/repositories
 
 RUN apk add --update \
     libmcrypt-dev \
@@ -20,34 +15,34 @@ RUN apk add --update \
     openssh-client \
     vim \
     wget \
-    php@php \
-    php-bcmath@php \
-    php-dom@php \
-    php-ctype@php \
-    php-curl@php \
-    php-fpm@php \
-    php-gd@php \
-    php-iconv@php \
-    php-intl@php \
-    php-imap@php \
-    php-json@php \
-    php-mbstring@php \
-    php-mysqlnd@php \
-    php-opcache@php \
-    php-openssl@php \
-    php-pdo@php \
-    php-pdo_mysql@php \
-    php-pdo_pgsql@php \
-    php-pdo_sqlite@php \
-    php-phar@php \
-    php-posix@php \
-    php-session@php \
-    php-soap@php \
-    php-xml@php \
-    php-xmlreader@php \
-    php-zip@php \
-    php-zlib@php \
-    php-xdebug@php
+    php7 \
+    php7-bcmath \
+    php7-dom \
+    php7-ctype \
+    php7-curl \
+    php7-fpm \
+    php7-gd \
+    php7-iconv \
+    php7-intl \
+    php7-imap \
+    php7-json \
+    php7-mbstring \
+    php7-mysqlnd \
+    php7-opcache \
+    php7-openssl \
+    php7-pdo \
+    php7-pdo_mysql \
+    php7-pdo_pgsql \
+    php7-pdo_sqlite \
+    php7-phar \
+    php7-posix \
+    php7-session \
+    php7-soap \
+    php7-xml \
+    php7-xmlreader \
+    php7-zip \
+    php7-zlib \
+    php7-xdebug
 
 RUN ln -s /usr/bin/php7 /usr/sbin/php
 
