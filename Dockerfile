@@ -1,62 +1,35 @@
-FROM node:12-alpine
+FROM php:8.0-fpm
 
 LABEL maintainer="smartive AG <hello@smartive.ch>"
 
-ENV PHP_VERSION 7.4
+RUN apt-get update && apt-get install -y \
+        libfreetype6-dev \
+        libjpeg62-turbo-dev \
+        libpng-dev \
+        libmcrypt-dev \
+        mariadb-client \
+        curl \
+        git \
+        bash \
+        openssh-client \
+        vim \
+        wget
 
-RUN apk update && \
-    apk add ca-certificates && \
-    update-ca-certificates
+# Install PHP extensions
+ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+RUN chmod +x /usr/local/bin/install-php-extensions && sync && \
+    install-php-extensions bcmath gd imap opcache pdo_mysql pdo_pgsql soap zip xdebug
 
-ADD https://dl.bintray.com/php-alpine/key/php-alpine.rsa.pub /etc/apk/keys/php-alpine.rsa.pub
-RUN echo "@php https://dl.bintray.com/php-alpine/v3.12/php-${PHP_VERSION}" >> /etc/apk/repositories
+# Install nodejs
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - \
+    && apt -y install nodejs
 
-RUN apk add --update \
-    libmcrypt-dev \
-    mysql-client \
-    curl \
-    git \
-    bash \
-    openssh-client \
-    vim \
-    wget \
-    php@php \
-    php-bcmath@php \
-    php-dom@php \
-    php-ctype@php \
-    php-curl@php \
-    php-fpm@php \
-    php-gd@php \
-    php-iconv@php \
-    php-imap@php \
-    php-json@php \
-    php-mbstring@php \
-    php-mysqlnd@php \
-    php-opcache@php \
-    php-openssl@php \
-    php-pdo@php \
-    php-pdo_mysql@php \
-    php-pdo_pgsql@php \
-    php-pdo_sqlite@php \
-    php-phar@php \
-    php-posix@php \
-    php-session@php \
-    php-soap@php \
-    php-xml@php \
-    php-xmlreader@php \
-    php-zip@php \
-    php-zlib@php \
-    php-xdebug@php
-
-RUN ln -s /usr/bin/php7 /usr/sbin/php
-
-RUN rm -rf /var/cache/apk/* && rm -rf /tmp/*
-
+# Install composer
 RUN curl --insecure https://getcomposer.org/composer.phar -o /usr/bin/composer && chmod +x /usr/bin/composer
 
-COPY symfony.ini /etc/php7/php-fpm.d/
-COPY symfony.ini /etc/php7/conf.d/10-symfony.ini
-COPY symfony.pool.conf /etc/php7/php-fpm.d/www.conf
+# Setup configuration
+RUN mv $PHP_INI_DIR/php.ini-development $PHP_INI_DIR/php.ini
+COPY symfony.ini $PHP_INI_DIR/
 COPY run.sh /root/run.sh
 COPY ssh-agent.sh /root/ssh-agent.sh
 

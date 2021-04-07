@@ -44,4 +44,4 @@ fi
 
 php --version
 echo "System is ready, starting PHP-FPM.."
-php-fpm7 -RF
+php-fpm -RF
